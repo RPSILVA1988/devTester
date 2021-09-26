@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+
+        <ul>
+            <li v-for="task in tasks">
+                {{ task.name }}
+            </li>
+        </ul>
+
+        <input type="text" placeholder="Nome da tarefa" v-model="taskName" />
+        <button v-on:click="addTask">Adicionar</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js from QA Ninja',
+                taskName: '',
+                tasks: [
+                    { name: 'Estudar javaScript' },
+                    { name: 'Estudar Vue' },
+                    { name: 'Estudar Java' }
+                ]
+            },
+            methods: {
+                addTask() {
+                    this.tasks.push({ name: this.taskName })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
