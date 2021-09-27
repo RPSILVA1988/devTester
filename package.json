@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@vue/cli": "^4.5.13",
+    "global": "^4.4.0"
+  }
+}
