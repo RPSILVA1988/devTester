@@ -1,0 +1,22 @@
+{
+  "name": "zaplink-api",
+  "version": "1.0.0",
+  "description": "API REST do ZapLink",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "node.js",
+    "hapi.dev",
+    "hapi"
+  ],
+  "author": "RANIELE PINHEIRO",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "20.0.1",
+    "nodemon": "^2.0.4"
+  }
+}
