@@ -3,6 +3,13 @@
     <div class="container">
       <h4 class="title is-4">Seu gerenciador digital de contatos</h4>
 
+      <b-button
+        label="+"
+        type="is-success"
+        size="is-medium"
+        @click="showContactAddModalActive = true"
+      />
+
       <div class="columns is-multiline">
         <div
           class="column is-4"
@@ -35,6 +42,46 @@
           </div>
         </div>
       </div>
+
+      <b-modal
+        v-model="showContactAddModalActive"
+        has-modal-card
+        trap-focus
+        :destroy-on-hide="false"
+        aria-role="dialog"
+        aria-label="Example Modal"
+        aria-modal
+      >
+        <form action="">
+          <div class="modal-card" style="width: 450px">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Novo Contato</p>
+              <button
+                type="button"
+                class="delete"
+                @click="showContactAddModalActive = false"
+              />
+            </header>
+            <section class="modal-card-body">
+              <div class="field">
+                <input class="input is-primary" placeholder="Nome Completo" />
+              </div>
+              <div class="field">
+                <input class="input is-primary" placeholder="WhatsApp" />
+              </div>
+              <div class="field">
+                <textarea
+                  class="textarea is-primary"
+                  placeholder="Assunto"
+                ></textarea>
+              </div>
+            </section>
+            <footer class="modal-card-foot">
+              <b-button label="Cadastrar" type="is-success" />
+            </footer>
+          </div>
+        </form>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -47,14 +94,15 @@ export default {
   data() {
     return {
       contactList: [],
+      showContactAddModalActive: false,
     };
   },
   methods: {
     list() {
-      window.axios.get('/contacts').then(async (res) => {
+      window.axios.get("/contacts").then(async (res) => {
         this.contactList = await res.data;
-      })
-    }
+      });
+    },
   },
   mounted() {
     this.list();
