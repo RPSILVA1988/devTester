@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -v tests"
   },
   "keywords": [
     "api",
@@ -16,7 +16,9 @@
   "author": "RANIELE PINHEIRO",
   "license": "MIT",
   "dependencies": {
+    "@hapi/code": "^8.0.3",
     "@hapi/hapi": "20.0.1",
+    "@hapi/lab": "^24.3.2",
     "mongoose": "5.10.6",
     "nodemon": "2.0.4"
   }
