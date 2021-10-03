@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "20.0.1",
-    "nodemon": "^2.0.4"
+    "mongoose": "5.10.6",
+    "nodemon": "2.0.4"
   }
 }
