@@ -7,8 +7,11 @@
     >
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="./assets/logo-nav.svg" width="112" height="28" />
+          <a
+            class="navbar-item"
+            href="https://github.com/RPSILVA1988"
+            target="_blank"
+            ><img src="./assets/logo-nav.svg" width="112" height="28" />
           </a>
 
           <a
