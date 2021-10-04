@@ -4,7 +4,7 @@
   "description": "API REST do ZapLink",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
     "test": "lab -v tests"
   },
   "keywords": [
@@ -21,6 +21,6 @@
     "@hapi/lab": "^24.3.2",
     "axios": "^0.22.0",
     "mongoose": "5.10.6",
-    "nodemon": "2.0.4"
+    "nodemon": "^2.0.4"
   }
 }

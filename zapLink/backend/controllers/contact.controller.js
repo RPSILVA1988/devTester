@@ -12,9 +12,9 @@ module.exports = {
             description: request.payload.description
         })
 
-        contact.save()
+        let result = await contact.save()
 
-        return null;
+        return h.response(result).code(200);
     },
     async list(request, h) {
         const contacts = await ContactModel.find().exec();
