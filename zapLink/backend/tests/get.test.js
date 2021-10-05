@@ -19,11 +19,11 @@ describe('GET /contacts', () => {
         })
     })
 
-    it('deve retornar 200', async () => {
+    it('então deve retornar 200', async () => {
         expect(res.statusCode).to.equal(200)
     })
 
-    it('deve retornar uma lista', async () => {
+    it('então deve retornar uma lista', async () => {
         expect(res.result).to.be.array()
 
         console.log(res)
