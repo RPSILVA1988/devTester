@@ -10,6 +10,22 @@ describe('POST /contacts', () => {
 
     let resp;
 
+    describe('quando o payload é Nulo', () => {
+        before(async () => {
+            var server = await init();
+
+            resp = await server.inject({
+                method: 'post',
+                url: '/contacts',
+                payload: null
+            })
+        })
+
+        it('então deve retornar 400', async () => {
+            expect(resp.statusCode).to.equal(400) //validar se retornou 400
+        })
+    })
+
     describe('quando o payload é bonitão', () => {
         before(async () => {
             var server = await init();
