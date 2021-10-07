@@ -4,13 +4,14 @@
       <h4 class="title is-4">Seu gerenciador digital de contatos</h4>
 
       <b-button
+        id="addNewContact"
         label="+"
         type="is-success"
         size="is-medium"
         @click="showContactAddModalActive = true"
       />
 
-      <div class="columns is-multiline">
+      <div class="contact-list columns is-multiline">
         <div
           class="column is-4"
           v-for="contact in contactList"
@@ -63,30 +64,39 @@
               />
             </header>
             <section class="modal-card-body">
-              <div class="field">
+              <div class="field input-name">
                 <input
                   class="input is-primary"
                   v-model="form.name"
                   placeholder="Nome Completo"
                 />
+                <small class="has-text-danger" v-if="errorName === true"
+                  >Nome é obrigatório.</small
+                >
               </div>
-              <div class="field">
+              <div class="field input-number">
                 <input
                   class="input is-primary"
                   v-model="form.number"
                   placeholder="WhatsApp"
                 />
+                <small class="has-text-danger" v-if="errorNumber === true"
+                  >WhatsApp é obrigatório.</small
+                >
               </div>
-              <div class="field">
+              <div class="field text-description">
                 <textarea
                   class="textarea is-primary"
                   v-model="form.description"
                   placeholder="Assunto"
                 ></textarea>
+                <small class="has-text-danger" v-if="errorDescription === true"
+                  >Assunto é obrigatório.</small
+                >
               </div>
             </section>
             <footer class="modal-card-foot">
-              <b-button
+              <b-button id="saveButton"
                 label="Cadastrar"
                 type="button is-success"
                 @click="create"
@@ -108,6 +118,9 @@ export default {
     return {
       contactList: [],
       showContactAddModalActive: false,
+      errorName: false,
+      errorNumber: false,
+      errorDescription: false,
       form: {
         name: "",
         number: "",
@@ -117,12 +130,34 @@ export default {
   },
   methods: {
     create() {
-      console.log(this.form)
-      window.axios.post('/contacts', this.form).then(async (res) => {
-        await res.data;
-        this.showContactAddModalActive = false;
-        this.list();
-      })
+      this.errorName = false;
+      this.errorNumber = false;
+      this.errorDescription = false;
+
+      if (this.form.name === "") {
+        this.errorName = true;
+      }
+
+      if (this.form.number === "") {
+        this.errorNumber = true;
+      }
+
+      if (this.form.description === "") {
+        this.errorDescription = true;
+      }
+
+      if (
+        this.errorName === false &&
+        this.errorNumber === false &&
+        this.errorDescription === false
+      ) {
+        console.log(this.form);
+        window.axios.post("/contacts", this.form).then(async (res) => {
+          await res.data;
+          this.showContactAddModalActive = false;
+          this.list();
+        });
+      }
     },
     list() {
       window.axios.get("/contacts").then(async (res) => {
