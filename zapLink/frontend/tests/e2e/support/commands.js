@@ -23,3 +23,33 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("dash", () => {
+    cy.visit('/dashboard')
+})
+
+Cypress.Commands.add("createContact", (contact) => {
+    cy.get('#addNewContact').click()
+
+    if (contact.name) cy.get('.input-name input').type(contact.name)
+    if (contact.number) cy.get('.input-number input').type(contact.number)
+    if (contact.description) cy.get('.text-description textarea').type(contact.description)
+
+    cy.get('#saveButton').click()
+})
+
+Cypress.Commands.add("contactList", () => {
+    return cy.get('.contact-list')
+})
+
+Cypress.Commands.add("alertName", () => {
+    return cy.get('.input-name small')
+})
+
+Cypress.Commands.add("alertNumber", () => {
+    return cy.get('.input-number small')
+})
+
+Cypress.Commands.add("alertDescription", () => {
+    return cy.get('.text-description small')
+})

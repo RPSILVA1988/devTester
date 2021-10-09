@@ -1,92 +1,76 @@
-//padrão PageObject ByQAninja - mais usada no mercado
-
-class DashPAge {
-
-    create(contact) {
-        cy.get('#addNewContact').click()
-
-        cy.get('.input-name input').type(contact.name)
-        cy.get('.input-number input').type(contact.number)
-        cy.get('.text-description textarea').type(contact.description)
-
-        cy.get('#saveButton').click()
-    }
-}
+//PageObject Padrão Cypress
 
 describe('Cadastro de Contatos', () => {
 
     describe('Dado que eu tenho um novo contato', () => {
         //variavel let contém a massa do teste a ser usada no cadastro do novo contato
         let contact = {
-            name: 'RANIELE PINHEIRO 2',
+            name: 'CAIO EDUARDO 09',
             number: '11999997777',
             description: 'Solicitar orçamento para Consultoria'
         }
         //o it é o step do teste
         describe('Quando adiciono esse contato', () => {
-            
+
             before(() => {
-                const dash = DashPAge
-
-                cy.visit('/dashboard')
-
-                dash.create(contact)
+                cy.dash()
+                cy.createContact(contact)
             })
 
             it('Então devo ver esse contato no dashboard', () => {
-                cy.get('.contact-list').contains(contact.name)
+                cy.contactList().contains(contact.name)
             })
         })
 
         describe('Quando submeto o cadastro sem o nome', () => {
+
+            let contact = {
+                number: '11999997777',
+                description: 'Solicitar orçamento para Consultoria'
+            }
+
             before(() => {
-                cy.visit('/dashboard')
-                cy.get('#addNewContact').click()
-
-                //cy.get('.input-name input').type(contact.name)
-                cy.get('.input-number input').type(contact.number)
-                cy.get('.text-description textarea').type(contact.description)
-
-                cy.get('#saveButton').click()
+                cy.dash()
+                cy.createContact(contact)
             })
 
             it('Deve mostrar uma notificação', () => {
-                cy.get('.input-name small').contains('Nome é obrigatório.')
+                cy.alertName().contains('Nome é obrigatório.')
             })
         })
 
         describe('Quando submeto o cadastro sem o whatsApp', () => {
+
+            let contact = {
+                name: 'CAIO EDUARDO 09',
+                description: 'Solicitar orçamento para Consultoria'
+            }
+
             before(() => {
-                cy.visit('/dashboard')
-                cy.get('#addNewContact').click()
-
-                cy.get('.input-name input').type(contact.name)
-                //cy.get('.input-number input').type(contact.number)
-                cy.get('.text-description textarea').type(contact.description)
-
-                cy.get('#saveButton').click()
+                cy.dash()
+                cy.createContact(contact)
             })
 
             it('Deve mostrar uma notificação', () => {
-                cy.get('.input-number small', { timeout: 5000 }).contains('WhatsApp é obrigatório.')
+                cy.alertNumber().contains('WhatsApp é obrigatório.')
                 //cy.get('.input-number small', { timeout: 5000 }).contains('WhatsApp é obrigatório.')
             })
         })
 
         describe('Quando submeto o cadastro sem o Assunto', () => {
+
+            let contact = {
+                name: 'CAIO EDUARDO 09',
+                number: '11999997777'
+            }
+
             before(() => {
-                cy.visit('/dashboard')
-                cy.get('#addNewContact').click()
-
-                cy.get('.input-name input').type(contact.name)
-                cy.get('.input-number input').type(contact.number)
-                //cy.get('.text-description textarea').type(contact.description)
-
-                cy.get('#saveButton').click()
+                cy.dash()
+                cy.createContact(contact)
             })
 
             it('Deve mostrar uma notificação', () => {
-                cy.get('.text-description small', { timeout: 5000 }).contains('Assunto é obrigatório.')
+                cy.alertDescription().contains('Assunto é obrigatório.')
                 //cy.get('.text-description small', { timeout: 5000 }).contains('Assunto é obrigatório.')
             })
         })
@@ -95,7 +79,7 @@ describe('Cadastro de Contatos', () => {
 
 
 /*
-//esse foi o ptimeiro teste realizado, defatoramos para ficar mais elegante
+//esse foi o ptimeiro teste realizado, refatoramos para ficar mais elegante
 describe('Cadastro de Contatos', () => {
     describe('Dado que eu tenho um novo contato', () => {
         //variavel let contém a massa do teste a ser usada no cadastro do novo contato
