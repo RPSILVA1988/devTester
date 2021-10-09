@@ -25,11 +25,14 @@
                 <input
                   class="input"
                   type="text"
+                  v-model="searchInput"
                   placeholder="Número do WhatsApp"
                 />
               </p>
               <p class="control">
-                <button class="button is-primary">Buscar</button>
+                <button class="button is-primary" @click="search">
+                  Buscar
+                </button>
               </p>
             </div>
           </div>
@@ -147,6 +150,7 @@ export default {
       errorName: false,
       errorNumber: false,
       errorDescription: false,
+      searchInput: "",
       form: {
         name: "",
         number: "",
@@ -155,6 +159,16 @@ export default {
     };
   },
   methods: {
+    search() {
+      //console.log(this.searchInput);
+      if (this.searchInput != "") {
+        this.contactList = this.contactList.filter(
+          (contact) => contact.number === this.searchInput
+        );
+      } else {
+        this.list();
+      }
+    },
     create() {
       this.errorName = false;
       this.errorNumber = false;
