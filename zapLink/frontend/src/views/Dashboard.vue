@@ -1,15 +1,40 @@
 <template>
   <div class="dashboard">
     <div class="container">
-      <h4 class="title is-4">Seu gerenciador digital de contatos</h4>
-
-      <b-button
-        id="addNewContact"
-        label="+"
-        type="is-success"
-        size="is-medium"
-        @click="showContactAddModalActive = true"
-      />
+      <!-- Main container -->
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+          <div class="level-item">
+            <h4 class="title is-4">Seu gerenciador digital de contatos</h4>
+          </div>
+        </div>
+        <!-- Right side -->
+        <div class="level-right">
+          <div class="level-item">
+            <b-button
+              id="addNewContact"
+              label="+"
+              type="is-success"
+              @click="showContactAddModalActive = true"
+            />
+          </div>
+          <div class="level-item">
+            <div class="field has-addons">
+              <p class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Número do WhatsApp"
+                />
+              </p>
+              <p class="control">
+                <button class="button is-primary">Buscar</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div class="contact-list columns is-multiline">
         <div
@@ -96,7 +121,8 @@
               </div>
             </section>
             <footer class="modal-card-foot">
-              <b-button id="saveButton"
+              <b-button
+                id="saveButton"
                 label="Cadastrar"
                 type="button is-success"
                 @click="create"
