@@ -38,8 +38,17 @@ Cypress.Commands.add("createContact", (contact) => {
     cy.get('#saveButton').click()
 })
 
+Cypress.Commands.add("searchContact", (number) => {
+    cy.get('.level-right input').type(number)
+    cy.get('.level-right button.is-primary').click()
+})
+
 Cypress.Commands.add("contactList", () => {
     return cy.get('.contact-list')
+})
+
+Cypress.Commands.add("contactItem", () => {
+    return cy.get('.card')
 })
 
 Cypress.Commands.add("alertName", () => {
