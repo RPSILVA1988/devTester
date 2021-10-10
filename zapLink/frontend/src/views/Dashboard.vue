@@ -43,6 +43,10 @@
         <img src="../assets/loading.gif" alt="Loader" />
       </div>
 
+      <article class="message is-danger" v-if="contactList.length === 0">
+        <div class="message-body">Contato não encontrado :(</div>
+      </article>
+
       <div class="contact-list columns is-multiline" v-if="isLoading == false">
         <div
           class="column is-4"
@@ -175,6 +179,7 @@ export default {
       } else {
         this.list();
       }
+      console.log(this.contactList);
     },
     create() {
       this.errorName = false;
