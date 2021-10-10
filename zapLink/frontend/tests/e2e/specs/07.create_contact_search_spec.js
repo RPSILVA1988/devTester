@@ -7,8 +7,13 @@ describe('Busca', () => {
         description: 'Aulas de Bateria'
     }
 
-    describe(`Quando busco pelo contato ${contact.name}`, () => {
+    describe(`Dado que eu tenho o seguinte contato ${contact.name}`, () => {
         before(() => {
+            cy.dash()
+            cy.createContact(contact)
+        })
+
+        it('Quando faço a busca desse contato', () => {
             cy.dash()
             cy.searchContact(contact.number)
             cy.get('#loader', { timeout: 5000 }).should('not.visible')

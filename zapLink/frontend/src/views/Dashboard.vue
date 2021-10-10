@@ -39,7 +39,11 @@
         </div>
       </nav>
 
-      <div class="contact-list columns is-multiline">
+      <div id="loader" v-if="isLoading === true">
+        <img src="../assets/loading.gif" alt="Loader" />
+      </div>
+
+      <div class="contact-list columns is-multiline" v-if="isLoading == false">
         <div
           class="column is-4"
           v-for="contact in contactList"
@@ -145,6 +149,7 @@ export default {
   name: "Dashboard",
   data() {
     return {
+      isLoading: false,
       contactList: [],
       showContactAddModalActive: false,
       errorName: false,
@@ -161,10 +166,12 @@ export default {
   methods: {
     search() {
       //console.log(this.searchInput);
+      this.isLoading = true;
       if (this.searchInput != "") {
         this.contactList = this.contactList.filter(
           (contact) => contact.number === this.searchInput
         );
+        this.isLoading = false;
       } else {
         this.list();
       }
@@ -200,8 +207,10 @@ export default {
       }
     },
     list() {
+      this.isLoading = true;
       window.axios.get("/contacts").then(async (res) => {
         this.contactList = await res.data;
+        this.isLoading = false;
       });
     },
   },
