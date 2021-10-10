@@ -51,6 +51,14 @@ Cypress.Commands.add("contactItem", () => {
     return cy.get('.card')
 })
 
+Cypress.Commands.add("getContact", (target) => {
+    return cy.contains('.card', contact.number)
+})
+
+Cypress.Commands.add("removeContact", (target) => {
+    cy.getContact(target).find('.btn-remove').click()
+})
+
 Cypress.Commands.add("alertName", () => {
     return cy.get('.input-name small')
 })
