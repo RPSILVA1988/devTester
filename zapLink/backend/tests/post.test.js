@@ -31,9 +31,9 @@ describe('POST /contacts', () => {
             var server = await init();
 
             let contact = {
-                name: "RANIELE 21",
-                number: "11 999997777",
-                description: "Lorem Ispum Test"
+                name: "RANIELE PINHEIRO",
+                number: "11 940732818",
+                description: "Analista de devQA"
             }
 
             resp = await server.inject({
