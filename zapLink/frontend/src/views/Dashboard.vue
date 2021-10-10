@@ -51,7 +51,7 @@
         <div
           class="column is-4"
           v-for="contact in contactList"
-          :key="contact.id"
+          :key="contact._id"
         >
           <div class="card">
             <div class="card-content">
@@ -74,7 +74,9 @@
             </div>
             <footer class="card-footer">
               <a href="#" class="card-footer-item">Conversar</a>
-              <a href="#" class="card-footer-item">Apagar</a>
+              <a href="#" class="card-footer-item" @click="remove(contact._id)"
+                >Apagar</a
+              >
             </footer>
           </div>
         </div>
@@ -211,10 +213,17 @@ export default {
         });
       }
     },
+    remove(contactId) {
+      window.axios.delete("/contacts/" + contactId).then(async (res) => {
+        await res.data;
+        this.list();
+      });
+    },
     list() {
       this.isLoading = true;
       window.axios.get("/contacts").then(async (res) => {
         this.contactList = await res.data;
+        console.log(this.contactList);
         this.isLoading = false;
       });
     },

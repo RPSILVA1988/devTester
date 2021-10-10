@@ -39,6 +39,14 @@ module.exports = {
             return h.response(error).code(500)
         }
     },
+    async remove(request, h) {
+        try {
+            await ContactModel.deleteOne({ _id: request.params.contactId })
+            return h.response({}).code(204)
+        } catch (error) {
+            return h.response(error).code(500)
+        }
+    },
     async list(request, h) {
         const contacts = await ContactModel.find().exec();
         return contacts;
