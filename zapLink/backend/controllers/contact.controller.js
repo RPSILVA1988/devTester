@@ -1,5 +1,4 @@
 
-const { DocumentProvider } = require('mongoose')
 const ContactModel = require('../models/contact.model')
 
 module.exports = {
@@ -22,10 +21,10 @@ module.exports = {
             return h.response({ message: 'Name is required' }).code(409)
 
         if (!contact.number) //se esse campo não existir, ou seja se for true, devolva 409
-            return h.response(null).code(409)
+            return h.response({ message: 'Number is required' }).code(409)
 
         if (!contact.description) //se esse campo não existir, ou seja se for true, devolva 409
-            return h.response(null).code(409)
+            return h.response({ message: 'Description is required' }).code(409)
 
         const dup = await ContactModel.findOne({ number: contact.number }).exec();
 
