@@ -24,6 +24,7 @@ describe('Remover Contato', () => {
             cy.dash()
             cy.removeContact(contact.number)
         })
+
         it('Não deve exibir no dashboard', () => {
             cy.getContact(contact.number).should('not.visible')
         })

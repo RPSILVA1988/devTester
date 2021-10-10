@@ -52,7 +52,7 @@ Cypress.Commands.add("contactItem", () => {
 })
 
 Cypress.Commands.add("getContact", (target) => {
-    return cy.contains('.card', contact.number)
+    return cy.contains('.card', target)
 })
 
 Cypress.Commands.add("removeContact", (target) => {
