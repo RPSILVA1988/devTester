@@ -13,7 +13,8 @@ describe('Busca', () => {
                 method: 'POST',
                 url: 'http://localhost:3000/contacts',
                 headers: { 'Content-Type': 'application/json' },
-                body: contact
+                body: contact,
+                failOnStatusCode: false
             }).then((response) => {
                 cy.log(JSON.stringify(response.body))
             })

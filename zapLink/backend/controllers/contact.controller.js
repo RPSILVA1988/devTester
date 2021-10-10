@@ -1,4 +1,5 @@
 
+const { DocumentProvider } = require('mongoose')
 const ContactModel = require('../models/contact.model')
 
 module.exports = {
@@ -25,6 +26,11 @@ module.exports = {
 
         if (!contact.description) //se esse campo não existir, ou seja se for true, devolva 409
             return h.response(null).code(409)
+
+        const dup = await ContactModel.findOne({ number: contact.number }).exec();
+
+        if (dup)
+            return h.response({ error: 'Duplicated number.' }).code(409)
 
         try {
             let result = await contact.save()
