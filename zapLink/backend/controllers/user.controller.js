@@ -1,4 +1,4 @@
-
+const ContactModel = require('../models/contact.model')
 const UserModel = require('../models/user.model')
 
 const md5 = require('md5')

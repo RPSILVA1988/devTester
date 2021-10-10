@@ -1,5 +1,14 @@
 
 const ContactModel = require('../models/contact.model')
+const UserModel = require('../models/user.model')
+
+const auth = async (request) => {
+    const userId = request.headers.authorization
+
+    const foundUser = await UserModel.findById(userId)
+    if (!foundUser)
+        throw { error: 'Unauthorized', code: 401 }
+}
 
 module.exports = {
     async create(request, h) {
@@ -7,7 +16,11 @@ module.exports = {
         if (request.payload === null)
             return h.response({ message: 'Not JSON' }).code(400)
 
-        console.log(request.payload)
+        try {
+            await auth(request)
+        } catch (error) {
+            return h.response(error).code(error.code)
+        }
 
         const contact = new ContactModel({
             name: request.payload.name,

@@ -1,4 +1,3 @@
-
 const UserController = require('../controllers/user.controller')
 
 module.exports = [
@@ -10,6 +9,6 @@ module.exports = [
     {
         method: 'POST',
         path: '/session',
-        handler: UserController.create
+        handler: UserController.login
     }
 ]
