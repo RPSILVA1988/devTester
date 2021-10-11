@@ -1,23 +1,26 @@
-
 const ContactModel = require('../models/contact.model')
 const UserModel = require('../models/user.model')
 
-const auth = async (request) => {
-    const userId = request.headers.authorization
+const auth = async (request, userId) => {
+
+    //const userId = request.headers.authorization
 
     const foundUser = await UserModel.findById(userId)
-    if (!foundUser)
+
+    if (!foundUser) //se o valor d eusuário for Nulo, estoura excessão
         throw { error: 'Unauthorized', code: 401 }
 }
 
 module.exports = {
     async create(request, h) {
 
+        const userId = request.headers.authorization
+
         if (request.payload === null)
             return h.response({ message: 'Not JSON' }).code(400)
 
         try {
-            await auth(request)
+            await auth(request, userId)
         } catch (error) {
             return h.response(error).code(error.code)
         }
@@ -25,7 +28,8 @@ module.exports = {
         const contact = new ContactModel({
             name: request.payload.name,
             number: request.payload.number,
-            description: request.payload.description
+            description: request.payload.description,
+            userId: userId
         })
 
         console.log(!contact.name) //contact.name é undefined é true?
@@ -39,7 +43,7 @@ module.exports = {
         if (!contact.description) //se esse campo não existir, ou seja se for true, devolva 409
             return h.response({ message: 'Description is required' }).code(409)
 
-        const dup = await ContactModel.findOne({ number: contact.number }).exec();
+        const dup = await ContactModel.findOne({ number: contact.number, userId: userId }).exec();
 
         if (dup)
             return h.response({ error: 'Duplicated number.' }).code(409)

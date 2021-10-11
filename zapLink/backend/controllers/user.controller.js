@@ -1,4 +1,3 @@
-const ContactModel = require('../models/contact.model')
 const UserModel = require('../models/user.model')
 
 const md5 = require('md5')
@@ -35,7 +34,28 @@ module.exports = {
         }
 
     },
-    async login() {
-        return null;
+    async login(request, h) {
+
+        if (request.payload === null)
+            return h.response({ message: 'Not JSON' }).code(400)
+
+        const { email, password } = request.payload
+
+        try {
+            const user = await UserModel.findOne({ email: email, password: md5(password) }).exec();
+
+            if (!user)
+                return h.response({ error: 'Unauthorized' }).code(401)
+
+            return h.response({ user_token: user._id }).code(200)
+
+        } catch (error) {
+            return h.response(error).code(500)
+        }
+
+        //console.log(user)
+        //console.log(email) //mostra qual e-mail foi passado
+        //console.log(password) //mostra qual password foi passado
+        //return null;
     }
 }

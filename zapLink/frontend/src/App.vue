@@ -7,6 +7,6 @@
 <style>
 html,
 body {
-  background-color: cadetblue;
-  }
+  background-color: rgb(151, 194, 196);
+}
 </style>
