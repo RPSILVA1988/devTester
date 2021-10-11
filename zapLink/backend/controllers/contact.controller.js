@@ -1,7 +1,7 @@
 const ContactModel = require('../models/contact.model')
 const UserModel = require('../models/user.model')
 
-const auth = async (request, userId) => {
+const auth = async (userId) => {
 
     //const userId = request.headers.authorization
 
@@ -20,7 +20,7 @@ module.exports = {
             return h.response({ message: 'Not JSON' }).code(400)
 
         try {
-            await auth(request, userId)
+            await auth(userId)
         } catch (error) {
             return h.response(error).code(error.code)
         }
@@ -56,15 +56,38 @@ module.exports = {
         }
     },
     async remove(request, h) {
+
+        const userId = request.headers.authorization
+
         try {
-            await ContactModel.deleteOne({ _id: request.params.contactId })
+            await auth(userId)
+        } catch (error) {
+            return h.response(error).code(error.code)
+        }
+
+        try {
+            const user = await ContactModel.findOne({ _id: request.params.contactId, userId: userId })
+
+            if (!user)
+                return h.response({}).code(404)
+
+            await ContactModel.deleteOne({ _id: request.params.contactId, userId: userId })
             return h.response({}).code(204)
         } catch (error) {
             return h.response(error).code(500)
         }
     },
     async list(request, h) {
-        const contacts = await ContactModel.find().exec();
+
+        const userId = request.headers.authorization
+
+        try {
+            await auth(userId)
+        } catch (error) {
+            return h.response(error).code(error.code)
+        }
+
+        const contacts = await ContactModel.find({ userId: userId }).exec();
         return contacts;
     }
 }
