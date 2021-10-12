@@ -70,3 +70,14 @@ Cypress.Commands.add("alertNumber", () => {
 Cypress.Commands.add("alertDescription", () => {
     return cy.get('.text-description small')
 })
+
+Cypress.Commands.add('doLogin', (email, password) => {
+    cy.visit('/')
+    if (email) cy.get('input[name=email]').type(email)
+    if (password) cy.get('input[name=password]').type(password)
+    cy.get('#sigIn').click()
+})
+
+Cypress.Commands.add('loginAlert', (target) => {
+    return cy.contains('.message-body', target)
+})
