@@ -12,7 +12,7 @@ describe('DELETE /contacts', () => {
 
     before(async () => {
 
-        const user = { email: 'pinheiro1988@mail.com', password: 'pwd123' }
+        const user = { email: 'pinheiro1988@mail.com', password: '123pwd' }
 
         var server = await init();
 
