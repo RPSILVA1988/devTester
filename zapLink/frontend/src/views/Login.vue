@@ -42,6 +42,9 @@
                       </span>
                     </p>
                   </div>
+                  <article v-if="alertError" class="message is-danger">
+                    <div class="message-body">{{ alertError }}</div>
+                  </article>
                   <div class="field">
                     <p class="control">
                       <button
@@ -71,6 +74,7 @@ export default {
   name: "Login",
   data() {
     return {
+      alertError: "",
       form: {
         email: "",
         password: "",
@@ -80,12 +84,28 @@ export default {
   methods: {
     login() {
       //console.log(this.form);
-      window.axios.post("/session", this.form).then(async (res) => {
-        const resp = await res.data;
-        //console.log(resp); neste ponto consigo pegar o token q retorna do user e pass validos
-        localStorage.setItem("user_token", resp.user_token);
-        this.$router.push("/dashboard");
-      });
+
+      if (this.form.email === "") {
+        this.alertError = "Oops! Favor informar o seu email";
+        return null;
+      }
+
+      if (this.form.password === "") {
+        this.alertError = "Oops! Favor informar o sua senha";
+        return null;
+      }
+
+      window.axios
+        .post("/session", this.form)
+        .then(async (res) => {
+          const resp = await res.data;
+          //console.log(resp); neste ponto consigo pegar o token q retorna do user e pass validos
+          localStorage.setItem("user_token", resp.user_token);
+          this.$router.push("/dashboard");
+        })
+        .catch((error) => {
+          this.alertError = "Email e/ou senha invalidos!";
+        });
     },
   },
 };
