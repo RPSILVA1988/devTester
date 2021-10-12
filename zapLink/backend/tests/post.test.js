@@ -35,6 +35,23 @@ describe('POST /contacts', () => {
 
     })
 
+    describe('quando não tenho acesso', () => {
+        before(async () => {
+            var server = await init();
+
+            resp = await server.inject({
+                method: 'post',
+                url: '/contacts',
+                payload: null,
+                headers: { 'Authorization': '6164b51382732a1f60b7abcd' }
+            })
+        })
+
+        it('então deve retornar 401', async () => {
+            expect(resp.statusCode).to.equal(401) //validar se retornou 401
+        })
+    })
+
     describe('quando o payload é Nulo', () => {
         before(async () => {
             var server = await init();
@@ -58,7 +75,7 @@ describe('POST /contacts', () => {
 
             let contact = {
                 name: "RANIELE PINHEIRO",
-                number: "11 940732818",
+                number: "11940732818",
                 description: "Analista de devQA"
             }
 
@@ -78,6 +95,36 @@ describe('POST /contacts', () => {
             console.log(resp.result._id)
             expect(resp.result._id).to.be.a.object() //valida se esta retornando de fato um objeto
             expect(resp.result._id.toString().length).to.equal(24) //valida se o id do contato retornado de fato contém 24 caracteres, para isso converto para string antes de contar, pois ele vem com undefined
+        })
+    })
+
+    describe('quando o contato já existe', () => {
+        before(async () => {
+            var server = await init();
+
+            let contact = {
+                name: "RANIELE Duplicado",
+                number: "11999991234",
+                description: "Analista de devQA"
+            }
+
+            await server.inject({
+                method: 'post',
+                url: '/contacts',
+                payload: contact,
+                headers: { 'Authorization': userToken }
+            })
+
+            resp = await server.inject({
+                method: 'post',
+                url: '/contacts',
+                payload: contact,
+                headers: { 'Authorization': userToken }
+            })
+        })
+
+        it('então deve retornar 409', async () => {
+            expect(resp.statusCode).to.equal(409) //validar se retornou 409
         })
     })
 
