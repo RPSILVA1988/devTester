@@ -9,6 +9,31 @@ const { before, describe, it } = exports.lab = Lab.script();
 describe('POST /contacts', () => {
 
     let resp;
+    let userToken;
+
+    before(async () => {
+
+        const user = { email: 'rps1988@mail.com', password: 'pwd123' }
+
+        var server = await init();
+
+        await server.inject({
+            method: 'post',
+            url: '/user',
+            payload: user
+        })
+
+        resp = await server.inject({
+            method: 'post',
+            url: '/session',
+            payload: user
+        })
+
+        //console.log(resp.result)
+
+        userToken = resp.result.user_token
+
+    })
 
     describe('quando o payload é Nulo', () => {
         before(async () => {
@@ -17,7 +42,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: null
+                payload: null,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -39,7 +65,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -66,7 +93,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -92,7 +120,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -113,7 +142,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -135,7 +165,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -156,7 +187,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 
@@ -178,7 +210,8 @@ describe('POST /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
         })
 

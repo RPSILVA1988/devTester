@@ -8,6 +8,32 @@ const { before, describe, it } = exports.lab = Lab.script();
 
 describe('DELETE /contacts', () => {
 
+    let userToken;
+
+    before(async () => {
+
+        const user = { email: 'pinheiro1988@mail.com', password: 'pwd123' }
+
+        var server = await init();
+
+        await server.inject({
+            method: 'post',
+            url: '/user',
+            payload: user
+        })
+
+        resp = await server.inject({
+            method: 'post',
+            url: '/session',
+            payload: user
+        })
+
+        //console.log(resp.result)
+
+        userToken = resp.result.user_token
+
+    })
+
     describe('Dado que eu tenho um contato indesejado', () => {
 
         const contact = {
@@ -26,7 +52,8 @@ describe('DELETE /contacts', () => {
             resp = await server.inject({
                 method: 'post',
                 url: '/contacts',
-                payload: contact
+                payload: contact,
+                headers: { 'Authorization': userToken }
             })
 
             contactId = resp.result._id
@@ -35,14 +62,15 @@ describe('DELETE /contacts', () => {
         it('Quando eu apago esse contato', async () => {
             resp = await server.inject({
                 method: 'delete',
-                url: '/contacts/' + contactId
+                url: '/contacts/' + contactId,
+                headers: { 'Authorization': userToken }
             })
         })
 
         it('Deve retornar 204', () => {
             expect(resp.statusCode).to.equal(204)
 
-            console.log(resp)
+            //console.log(resp)
         })
     })
 })

@@ -16,14 +16,14 @@ module.exports = {
 
         const userId = request.headers.authorization
 
-        if (request.payload === null)
-            return h.response({ message: 'Not JSON' }).code(400)
-
         try {
             await auth(userId)
         } catch (error) {
             return h.response(error).code(error.code)
         }
+
+        if (request.payload === null)
+            return h.response({ message: 'Not JSON' }).code(400)
 
         const contact = new ContactModel({
             name: request.payload.name,
