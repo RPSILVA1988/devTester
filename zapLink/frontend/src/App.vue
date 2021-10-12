@@ -4,9 +4,13 @@
   </div>
 </template>
 
+<!--
+
 <style>
 html,
 body {
   background-color: rgb(151, 194, 196);
 }
 </style>
+
+-->

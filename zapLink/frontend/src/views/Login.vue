@@ -15,6 +15,7 @@
                     <p class="control has-icons-left has-icons-right">
                       <input
                         class="input"
+                        v-model="form.email"
                         type="email"
                         placeholder="Seu email"
                         style="background: #a6c8c9"
@@ -31,6 +32,7 @@
                     <p class="control has-icons-left">
                       <input
                         class="input"
+                        v-model="form.password"
                         type="password"
                         placeholder="Sua senha"
                         style="background: #a6c8c9"
@@ -42,7 +44,13 @@
                   </div>
                   <div class="field">
                     <p class="control">
-                      <button class="button is-success">Entrar</button>
+                      <button
+                        type="button"
+                        @click="login()"
+                        class="button is-success"
+                      >
+                        Entrar
+                      </button>
                     </p>
                   </div>
                 </form>
@@ -57,6 +65,31 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    login() {
+      //console.log(this.form);
+      window.axios.post("/session", this.form).then(async (res) => {
+        const resp = await res.data;
+        //console.log(resp); neste ponto consigo pegar o token q retorna do user e pass validos
+        localStorage.setItem("user_token", resp.user_token);
+        this.$router.push("/dashboard");
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .login {
