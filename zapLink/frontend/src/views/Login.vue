@@ -14,6 +14,7 @@
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
                       <input
+                        name="email"
                         class="input"
                         v-model="form.email"
                         type="email"
@@ -31,6 +32,7 @@
                   <div class="field">
                     <p class="control has-icons-left">
                       <input
+                        name="password"
                         class="input"
                         v-model="form.password"
                         type="password"
@@ -48,6 +50,7 @@
                   <div class="field">
                     <p class="control">
                       <button
+                        id="sigIn"
                         type="button"
                         @click="login()"
                         class="button is-success"
