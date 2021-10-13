@@ -1,6 +1,23 @@
 
 describe('Remover Contato', () => {
 
+    const user = { email: 'pinheiro1988@mail.com', password: 'pwd123' }
+
+    before(() => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3000/user',
+            headers: { 'Content-Type': 'application/json' },
+            body: user,
+            failOnStatusCode: false
+        }).then((response) => {
+            cy.log(JSON.stringify(response.body))
+        })
+
+        cy.doLogin(user.email, user.password)
+        cy.get('.dashboard', { timeout: 5000 }).should('be.visible')
+    })
+
     const contact = {
         name: 'Paul Gilbert',
         number: '21999991111',

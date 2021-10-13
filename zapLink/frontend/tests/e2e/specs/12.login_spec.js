@@ -14,6 +14,7 @@ describe('Login', () => {
             cy.log(JSON.stringify(response.body))
         })
     })
+
     context('Quando submeto credenciais validas', () => {
         before(() => {
             cy.doLogin(user.email, user.password)
