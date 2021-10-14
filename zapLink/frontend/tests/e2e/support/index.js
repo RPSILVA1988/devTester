@@ -18,3 +18,24 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// ***********************************************************
+/*
+//Esse código é para desabilitar o ScreenShot para quando o teste der erro
+Cypress.Screenshot.defaults({
+    screenshotOnRunFailure: false
+})
+*/
+
+// ***********************************************************
+
+/*
+
+//Esse código é para habiliter o ScreenShot para todos os testes executados
+afterEach(() => {
+    cy.screenshot()
+})
+
+*/
+
+// ***********************************************************
