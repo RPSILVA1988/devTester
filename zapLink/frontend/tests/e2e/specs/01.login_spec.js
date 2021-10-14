@@ -27,12 +27,15 @@ describe('Login', () => {
     })
 
     describe('Quando submeto senha incorreta', () => {
+
+        const expectMessage = 'Email e/ou senha invalidos!'
+
         before(() => {
             cy.doLogin(user.email, 'abc123')
         })
 
-        it('Deve exibir mensagem de alerta', () => {
-            cy.loginAlert('Email e/ou senha invalidos!').should('be.visible')
+        it(`Deve exibir ${expectMessage}`, () => {
+            cy.loginAlert(expectMessage).should('be.visible')
         })
     })
     describe('Quando não informo o email', () => {
