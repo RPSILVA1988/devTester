@@ -7,12 +7,18 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:headless": "vue-cli-service test:e2e --headless"
+    "test:headless": "vue-cli-service test:e2e --headless",
+    "test:report": "yarn test:merge & yarn test:html",
+    "test:merge": "mochawesome-merge > mochawesome-report/report.json",
+    "test:html": "marge mochawesome-report//\\report.json"
   },
   "dependencies": {
     "axios": "0.20.0",
     "buefy": "0.9.3",
     "core-js": "3.6.5",
+    "mocha": "8.1.3",
+    "mochawesome": "6.3.1",
+    "mochawesome-merge": "4.2.0",
     "vue": "2.6.11",
     "vue-router": "3.2.0"
   },
@@ -21,7 +27,7 @@
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.11"
   },
   "browserslist": [
     "> 1%",

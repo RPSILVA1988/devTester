@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-10-14T02:41:20.733Z",
+    "end": "2021-10-14T02:41:22.907Z",
+    "duration": 2174,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5a1006e8-6559-4166-b4be-f60442488c83",
+      "title": "",
+      "fullFile": "tests\\e2e\\specs\\06.contact_talk_spec.js",
+      "file": "tests\\e2e\\specs\\06.contact_talk_spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4d3441f8-9b00-4848-a118-0e2ec30a3304",
+          "title": "Conversar",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+              "title": "Dado que Jojo Todynho é um contato indesejado",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Quando acesso o dashboard",
+                  "fullTitle": "Conversar Dado que Jojo Todynho é um contato indesejado Quando acesso o dashboard",
+                  "timedOut": null,
+                  "duration": 2035,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.dash();",
+                  "err": {},
+                  "uuid": "9864135a-a28a-47b0-9d50-f81fd452e84c",
+                  "parentUUID": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Devo ver a propriedade href com o link do Whatsapp Web",
+                  "fullTitle": "Conversar Dado que Jojo Todynho é um contato indesejado Devo ver a propriedade href com o link do Whatsapp Web",
+                  "timedOut": null,
+                  "duration": 112,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "var externalLink = \"https://api.whatsapp.com/send?phone=55\".concat(contact.number); //https://api.whatsapp.com/send?phone=5521999994444\n//esta validando se ao clicar no botão ele ta direcionando para esse link\ncy.get(\"a[href$=\\\"\".concat(contact.number, \"\\\"]\")).should('have.attr', 'href', externalLink);",
+                  "err": {},
+                  "uuid": "e8344192-da5b-474d-aa96-94947ebd2cb5",
+                  "parentUUID": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "9864135a-a28a-47b0-9d50-f81fd452e84c",
+                "e8344192-da5b-474d-aa96-94947ebd2cb5"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2147,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.1.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.3.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}

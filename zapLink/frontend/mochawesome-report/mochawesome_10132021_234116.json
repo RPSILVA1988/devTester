@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-10-14T02:41:13.113Z",
+    "end": "2021-10-14T02:41:16.233Z",
+    "duration": 3120,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0442de35-20d4-46b2-9644-02960bca9b92",
+      "title": "",
+      "fullFile": "tests\\e2e\\specs\\05.contact_remove_spec.js",
+      "file": "tests\\e2e\\specs\\05.contact_remove_spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "55e673e2-933c-4edd-9e45-02a0ae7cee89",
+          "title": "Remover Contato",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "8344b7fa-0186-4e50-8b1e-3ccf0b9ca379",
+              "title": "Dado que Paul Gilbert é um contato indesejado",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Quando apago esse contato",
+                  "fullTitle": "Remover Contato Dado que Paul Gilbert é um contato indesejado Quando apago esse contato",
+                  "timedOut": null,
+                  "duration": 2942,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.dash();\ncy.removeContact(contact.number);",
+                  "err": {},
+                  "uuid": "c2ed6119-b9a9-457e-b7ca-66b6166c3e53",
+                  "parentUUID": "8344b7fa-0186-4e50-8b1e-3ccf0b9ca379",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Não deve exibir no dashboard",
+                  "fullTitle": "Remover Contato Dado que Paul Gilbert é um contato indesejado Não deve exibir no dashboard",
+                  "timedOut": null,
+                  "duration": 141,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.getContact(contact.number).should('not.visible');",
+                  "err": {},
+                  "uuid": "14d4745d-7884-4275-a001-f68c2755d10e",
+                  "parentUUID": "8344b7fa-0186-4e50-8b1e-3ccf0b9ca379",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "c2ed6119-b9a9-457e-b7ca-66b6166c3e53",
+                "14d4745d-7884-4275-a001-f68c2755d10e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 3083,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.1.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.3.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "5.2.0"
+    }
+  }
+}
