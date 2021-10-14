@@ -6,7 +6,8 @@
     "start": "yarn serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:headless": "vue-cli-service test:e2e --headless"
   },
   "dependencies": {
     "axios": "0.20.0",
