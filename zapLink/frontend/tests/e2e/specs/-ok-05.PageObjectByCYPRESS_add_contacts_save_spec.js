@@ -2,6 +2,23 @@
 
 describe('Cadastro de Contatos', () => {
 
+    const user = { email: 'pinheiro88@mail.com', password: 'pwd123' }
+
+    before(() => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3000/user',
+            headers: { 'Content-Type': 'application/json' },
+            body: user,
+            failOnStatusCode: false
+        }).then((response) => {
+            cy.log(JSON.stringify(response.body))
+        })
+
+        cy.doLogin(user.email, user.password)
+        cy.get('.dashboard', { timeout: 5000 }).should('be.visible')
+    })
+
     describe('Dado que eu tenho um novo contato', () => {
         //variavel let contém a massa do teste a ser usada no cadastro do novo contato
         let contact = {

@@ -29,7 +29,10 @@ describe('Remover Contato', () => {
             cy.request({
                 method: 'POST',
                 url: 'http://localhost:3000/contacts',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('user_token')
+                },
                 body: contact,
                 failOnStatusCode: false
             }).then((response) => {
