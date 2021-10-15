@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2021-10-14T02:41:20.733Z",
-    "end": "2021-10-14T02:41:22.907Z",
-    "duration": 2174,
+    "start": "2021-10-15T01:44:59.435Z",
+    "end": "2021-10-15T01:45:01.488Z",
+    "duration": 2053,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "5a1006e8-6559-4166-b4be-f60442488c83",
+      "uuid": "62eecaea-8619-4981-bdca-b39f9f243cad",
       "title": "",
       "fullFile": "tests\\e2e\\specs\\06.contact_talk_spec.js",
       "file": "tests\\e2e\\specs\\06.contact_talk_spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "4d3441f8-9b00-4848-a118-0e2ec30a3304",
+          "uuid": "5f269fd4-6f46-487d-b651-e60c8193fa3f",
           "title": "Conversar",
           "fullFile": "",
           "file": "",
@@ -36,7 +36,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+              "uuid": "57f18d7c-7dca-4706-adb2-466af311e390",
               "title": "Dado que Jojo Todynho é um contato indesejado",
               "fullFile": "",
               "file": "",
@@ -47,7 +47,7 @@
                   "title": "Quando acesso o dashboard",
                   "fullTitle": "Conversar Dado que Jojo Todynho é um contato indesejado Quando acesso o dashboard",
                   "timedOut": null,
-                  "duration": 2035,
+                  "duration": 1905,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -56,8 +56,8 @@
                   "context": null,
                   "code": "cy.dash();",
                   "err": {},
-                  "uuid": "9864135a-a28a-47b0-9d50-f81fd452e84c",
-                  "parentUUID": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+                  "uuid": "8f1ca236-26b0-457d-b028-39a1605c4878",
+                  "parentUUID": "57f18d7c-7dca-4706-adb2-466af311e390",
                   "isHook": false,
                   "skipped": false
                 },
@@ -65,7 +65,7 @@
                   "title": "Devo ver a propriedade href com o link do Whatsapp Web",
                   "fullTitle": "Conversar Dado que Jojo Todynho é um contato indesejado Devo ver a propriedade href com o link do Whatsapp Web",
                   "timedOut": null,
-                  "duration": 112,
+                  "duration": 118,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -74,21 +74,21 @@
                   "context": null,
                   "code": "var externalLink = \"https://api.whatsapp.com/send?phone=55\".concat(contact.number); //https://api.whatsapp.com/send?phone=5521999994444\n//esta validando se ao clicar no botão ele ta direcionando para esse link\ncy.get(\"a[href$=\\\"\".concat(contact.number, \"\\\"]\")).should('have.attr', 'href', externalLink);",
                   "err": {},
-                  "uuid": "e8344192-da5b-474d-aa96-94947ebd2cb5",
-                  "parentUUID": "15918666-2ed6-47f6-ab09-dd3ca735e8b5",
+                  "uuid": "55215750-f650-4a5e-9113-eca703bee5aa",
+                  "parentUUID": "57f18d7c-7dca-4706-adb2-466af311e390",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "9864135a-a28a-47b0-9d50-f81fd452e84c",
-                "e8344192-da5b-474d-aa96-94947ebd2cb5"
+                "8f1ca236-26b0-457d-b028-39a1605c4878",
+                "55215750-f650-4a5e-9113-eca703bee5aa"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 2147,
+              "duration": 2023,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000

@@ -46,13 +46,15 @@ describe('Cadastro de Contatos', () => {
                 description: 'Solicitar orçamento para Consultoria'
             }
 
+            const expectNotice = 'Nome é obrigatório.'
+
             before(() => {
                 cy.dash()
                 cy.createContact(contact)
             })
 
-            it('Deve mostrar uma notificação', () => {
-                cy.alertName().contains('Nome é obrigatório.')
+            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+                cy.alertName().contains(expectNotice)
             })
         })
 
@@ -63,13 +65,15 @@ describe('Cadastro de Contatos', () => {
                 description: 'Solicitar orçamento para Consultoria'
             }
 
+            const expectNotice = 'WhatsApp é obrigatório.'
+
             before(() => {
                 cy.dash()
                 cy.createContact(contact)
             })
 
-            it('Deve mostrar uma notificação', () => {
-                cy.alertNumber().contains('WhatsApp é obrigatório.')
+            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+                cy.alertNumber().contains(expectNotice)
                 //cy.get('.input-number small', { timeout: 5000 }).contains('WhatsApp é obrigatório.')
             })
         })
@@ -81,13 +85,15 @@ describe('Cadastro de Contatos', () => {
                 number: '11999997777'
             }
 
+            const expectNotice = 'Assunto é obrigatório.'
+
             before(() => {
                 cy.dash()
                 cy.createContact(contact)
             })
 
-            it('Deve mostrar uma notificação', () => {
-                cy.alertDescription().contains('Assunto é obrigatório.')
+            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+                cy.alertDescription().contains(expectNotice)
                 //cy.get('.text-description small', { timeout: 5000 }).contains('Assunto é obrigatório.')
             })
         })

@@ -39,22 +39,28 @@ describe('Login', () => {
         })
     })
     describe('Quando não informo o email', () => {
+
+        const expectMessage = 'Oops! Favor informar o seu email'
+
         before(() => {
             cy.doLogin('', 'abc123')
         })
 
-        it('Deve exibir mensagem de alerta', () => {
-            cy.loginAlert('Oops! Favor informar o seu email').should('be.visible')
+        it(`Deve exibir ${expectMessage}`, () => {
+            cy.loginAlert(expectMessage).should('be.visible')
         })
     })
 
     describe('Quando não informo a senha', () => {
+
+        const expectMessage = 'Oops! Favor informar o sua senha'
+
         before(() => {
             cy.doLogin('user.email', '')
         })
 
-        it('Deve exibir mensagem de alerta', () => {
-            cy.loginAlert('Oops! Favor informar o sua senha').should('be.visible')
+        it(`Deve exibir ${expectMessage}`, () => {
+            cy.loginAlert(expectMessage).should('be.visible')
         })
     })
 })
