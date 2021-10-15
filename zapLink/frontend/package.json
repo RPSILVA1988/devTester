@@ -8,9 +8,10 @@
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
     "test:headless": "vue-cli-service test:e2e --headless",
-    "test:report": "yarn test:merge & yarn test:html",
+    "test:report": "yarn test:merge & yarn test:html & yarn test:mv",
     "test:merge": "mochawesome-merge > mochawesome-report/report.json",
-    "test:html": "marge mochawesome-report//\\report.json"
+    "test:html": "marge mochawesome-report//\\report.json",
+    "test:mv": "mv tests\\e2e\\screenshots mochawesome-report\\assets\\screenshots"
   },
   "dependencies": {
     "axios": "0.20.0",

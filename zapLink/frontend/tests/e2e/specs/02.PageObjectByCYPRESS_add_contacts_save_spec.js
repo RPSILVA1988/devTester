@@ -53,7 +53,7 @@ describe('Cadastro de Contatos', () => {
                 cy.createContact(contact)
             })
 
-            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+            it(`Deve mostrar a notificação ${expectNotice.replace(/[^a-zA-Z]/g, '')}`, () => {
                 cy.alertName().contains(expectNotice)
             })
         })
@@ -72,7 +72,7 @@ describe('Cadastro de Contatos', () => {
                 cy.createContact(contact)
             })
 
-            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+            it(`Deve mostrar a notificação ${expectNotice.replace(/[^a-zA-Z]/g, '')}`, () => {
                 cy.alertNumber().contains(expectNotice)
                 //cy.get('.input-number small', { timeout: 5000 }).contains('WhatsApp é obrigatório.')
             })
@@ -92,7 +92,7 @@ describe('Cadastro de Contatos', () => {
                 cy.createContact(contact)
             })
 
-            it(`Deve mostrar a notificação: ${expectNotice}`, () => {
+            it(`Deve mostrar a notificação ${expectNotice.replace(/[^a-zA-Z]/g, '')}`, () => {
                 cy.alertDescription().contains(expectNotice)
                 //cy.get('.text-description small', { timeout: 5000 }).contains('Assunto é obrigatório.')
             })

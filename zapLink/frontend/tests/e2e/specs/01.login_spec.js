@@ -34,7 +34,7 @@ describe('Login', () => {
             cy.doLogin(user.email, 'abc123')
         })
 
-        it(`Deve exibir ${expectMessage}`, () => {
+        it(`Deve exibir ${expectMessage.replace(/[^a-zA-Z]/g, '')}`, () => {
             cy.loginAlert(expectMessage).should('be.visible')
         })
     })
@@ -46,7 +46,7 @@ describe('Login', () => {
             cy.doLogin('', 'abc123')
         })
 
-        it(`Deve exibir ${expectMessage}`, () => {
+        it(`Deve exibir ${expectMessage.replace(/[^a-zA-Z]/g, '')}`, () => {
             cy.loginAlert(expectMessage).should('be.visible')
         })
     })
@@ -59,7 +59,7 @@ describe('Login', () => {
             cy.doLogin('user.email', '')
         })
 
-        it(`Deve exibir ${expectMessage}`, () => {
+        it(`Deve exibir ${expectMessage.replace(/[^a-zA-Z]/g, '')}`, () => {
             cy.loginAlert(expectMessage).should('be.visible')
         })
     })
