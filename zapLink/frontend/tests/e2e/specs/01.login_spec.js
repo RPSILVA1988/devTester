@@ -20,7 +20,7 @@ describe('Login', () => {
             cy.doLogin(user.email, user.password)
         })
 
-        it('Deve exibir a área logada', () => {
+        it('Deve exibir area logada', () => {
             //cy.contactList().should('be.visible') //valida se a lista de contatos esta visivel, porém quebra se não achar nenhum contato
             cy.contains('h4', 'Seu gerenciador digital de contatos').should('be.visible')
         })
